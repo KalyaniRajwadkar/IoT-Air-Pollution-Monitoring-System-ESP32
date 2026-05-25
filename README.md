@@ -70,13 +70,54 @@ The system continuously monitors air quality parameters and sends real-time data
 
 ## Block Diagram
 
-[Add your Block Diagram Image Here]
+
+
+```mermaid
+graph TD
+A[Power Supply LM2596] --> B[ESP32]
+C[MQ135 Air Quality Sensor] --> B
+D[PM2.5 Dust Sensor] --> B
+B --> E[LCD 16x2 Display]
+B --> F[Relay Module]
+F --> G[Fan]
+B --> H[WiFi Communication]
+H --> I[ThingSpeak Cloud]
+```
 
 ---
 
 ## Circuit Diagram
+MQ135 Sensor           ESP32
+-----------           -----
+VCC       ----------> 5V
+GND       ----------> GND
+A0        ----------> GPIO34 (ADC)
 
-[Add Circuit Diagram Here]
+PM2.5 Sensor          ESP32
+-------------         -----
+VCC       ----------> 5V
+GND       ----------> GND
+OUT       ----------> GPIO35
+
+LCD 16x2 (I2C)        ESP32
+---------------       -----
+VCC       ----------> 5V
+GND       ----------> GND
+SDA       ----------> GPIO21
+SCL       ----------> GPIO22
+
+Relay Module          ESP32
+------------          -----
+VCC       ----------> 5V
+GND       ----------> GND
+IN        ----------> GPIO26
+
+Fan Connection
+--------------
+AC/DC Supply --> Relay COM
+Relay NO     --> Fan
+Fan          --> Supply Return
+
 
 ---
 
@@ -99,6 +140,16 @@ ThingSpeak is used for:
 - Environmental Monitoring
 - Smart Buildings
 
+
+## Circuit Flow
+- MQ135 ----\
+            \
+PM2.5 -------> ESP32 ------> LCD Display
+                 |
+                 +------> WiFi ---> ThingSpeak Cloud
+                 |
+                 +------> Relay -----> Fan
+
 ---
 
 ## Future Scope
@@ -113,9 +164,10 @@ ThingSpeak is used for:
 
 ## Team Members
 
-- Your Name
-- Team Member 2
-- Team Member 3
+- Kalyani Rajwadkar
+- Arpita Bhongade
+- Kalyani Jadhav
+  
 
 ---
 
