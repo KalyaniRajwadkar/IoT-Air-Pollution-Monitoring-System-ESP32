@@ -165,9 +165,8 @@ PM2.5 -------> ESP32 ------> LCD Display
 ## Team Members
 
 - Kalyani Rajwadkar
-- Arpita Bhongade
-- Kalyani Jadhav
-  
+
+
 
 ---
 
